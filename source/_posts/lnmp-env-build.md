@@ -1,7 +1,13 @@
 ---
 title: lnmp开发环境搭建 + mysql主从配置
 date: 2017-09-11 00:29:17
-tags: php, linux, git
+tags:
+  - php
+  - 服务器
+  - node
+  - mysql
+categories:
+  - 服务器
 ---
 
 现在的开发倾向于往虚拟机上进行开发，为了省去每次搭建环境在网上查找的多余时间，很久就想进行一次梳理并且把一些东西记录下来，方便下次搭建环境少走一些弯路。正好这次想搭一下主从同步，因此在virtualbox 上搭建了两个环境，均是 mysql 5.7.19 + php7.1.8 + node6.10.10 + nginx1.10.2 + centos6.9
@@ -12,12 +18,12 @@ tags: php, linux, git
 
 我是下载mysql的yum源的rpm包进行安装
 去 [官网yum列表](https://dev.mysql.com/downloads/repo/yum/) 中，找到你对应的版本源包地址    如图：
-![yum源](/img/lnmp/mysql_yum.png)
+{% qnimg lnmp/mysql_yum.png title:yum源 %}
 
 点击 Download
-![yum下载](/img/lnmp/mysql_download.png)
+{% qnimg lnmp/mysql_download.png title:yum下载 %}
 
-![yumlink](/img/lnmp/mysql_yum_link.png)
+{% qnimg lnmp/mysql_yum_link.png title:yumlink %}
 
 复制其中的下载链接, 进入centos 终端
 
@@ -33,7 +39,8 @@ tags: php, linux, git
 
 通过命令 ` ls /etc/yum.repos.d ` 查看源是否加载成功
 
-![mysql_linux_yum](/img/lnmp/mysql_linux_yum.png)
+{% qnimg lnmp/mysql_linux_yum.png title:mysql_linux_yum %}
+
 
 #### 通过yum源安装mysql
 
@@ -92,6 +99,7 @@ $ yum install php71w-opcache -y
 ```
 
 ## 安装nginx
+
 用yum 默认安装就可以
 
 ```
@@ -99,6 +107,7 @@ $ yum install nginx -y
 $ service nginx start
 
 ```
+
 ## 安装nodejs npm
 
 由于项目中会用到nodejs，同时现在的现代前端开发都通过npm进行包管理，因此也记下nodejs的搭建
@@ -106,10 +115,11 @@ $ service nginx start
 在 [node版本列表中](https://nodejs.org/dist/) 找到你需要的版本
 此处我安装的是`v6.11.1`的版本
 
-![node列表](/img/lnmp/node_list.png)
+{% qnimg lnmp/node_list.png title:node列表 %}
 
 点击进入后， 会有各个平台的下载包
-![node下载列表](/img/lnmp/node_down.png)
+{% qnimg lnmp/node_down.png title:node下载列表 %}
+
 比较懒的朋友可以直接下载已编译好的包，省去自己编译的麻烦了，我就是比较懒的 😁
 
 复制下载链接， 进入终端
@@ -132,6 +142,7 @@ $ ln -s /tmp/node-v6.11.1-linux-x64/bin/npm /usr/local/bin/npm
 通过node -v和npm -v查看是否正常
 
 ## 安装git
+
 朋友们应该知道，centos yum内置的git 版本只有1.7几 是不能正常使用的，需要升级到新版的git
 
 其间安装git也遇到个小坑，也记一下，万一有朋友遇到跟我一样的问题呢，或者下次我再安装的时候出现问题呢
@@ -150,7 +161,8 @@ $ tar -zxvf git-2.14.0.tar.gz
 
 $ cd git-2.14.0
 ```
-***此处有坑***：在编译安装之前，需要安装 `libcurl4-openssl-dev` 依赖，不然到时候git clone会出现`fatal: Unable to find remote helper for 'https'`错误，我的服务器是没安装这个包的，因此安装完后又跑回来重新编译了一下
+
+>此处有坑：在编译安装之前，需要安装 `libcurl4-openssl-dev` 依赖，不然到时候git clone会出现`fatal: Unable to find remote helper for 'https'`错误，我的服务器是没安装这个包的，因此安装完后又跑回来重新编译了一下
 
 ```
 $ yum install libcurl4-openssl-dev -y
@@ -178,7 +190,7 @@ $ make && make install
 3. 备库读取中继日志的事件，将其重放到备库数据上
 
 可参考下图:
-![主从配置](/img/lnmp/mysql_repl.png)
+{% qnimg lnmp/mysql_repl.png title:主从配置 %}
 
 主从配置的前提是要两个数据库版本相同
 
@@ -191,7 +203,9 @@ mysql> GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO backup@'192.168.0.*
 此处只是进行了简单的配置，该账号并不能进行select或修改数据
 
 ### 配置主库和从库
+
 #### 主库配置
+
 接下来是要在主库上开启一些设置，配置其打开二进制文件并指定一个独一无二的服务器id(server ID)，在主库的`my.cnf`文件中，增加或修改：
 
 ```
@@ -202,7 +216,9 @@ server_id = 1  # 通常设为1 但是不定
 如果之前没有设置`log_bin`选项，则需要重启mysql 服务
 为确保二进制日志文件是否创建，输入`SHOW MASTER STATUS`命令查看
 正常情况下会出现 列名`File`值为`mysql-bin.000001`的条目
+
 #### 从库配置
+
 在从库中也需要增加类似配置,并重启mysql服务
 
 ```
@@ -218,7 +234,9 @@ read_only          = 1
 ```
 不要在my.cnf中设置master_port或者master_host这类选项，已被废弃，只会导致坏处不会有好处
 ```
+
 #### 启动复制
+
 通过`CHANGE MASTER TO`语句连接主库启动复制
 
 ```
@@ -230,7 +248,7 @@ mysql> CHANGE MASTER TO MASTER_HOST='server1_host',
 ```
 
 `MASTER_LOG_POS`设置为0，因为要从日志的开头读起，执行完上述语句后，通过`SHOW SLAVE STATUS\G;`命令查看是否正确执行
-![mysql_slave](/img/lnmp/mysql_slave.png)
+{% qnimg lnmp/mysql_slave.png title:mysql_slave %}
 
 其中标红的正常应该是4和4，因为我这里的截图是配置完执行过复制后的状态，而且其中的`mysql-bin`文件的后缀应该是000001
 

@@ -4,7 +4,7 @@
 
 
 # Site
-title: 游骑
+title: Ranger
 subtitle:
 description:
 author: Ranger Dong
@@ -15,7 +15,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.rangerdong.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -41,7 +41,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
@@ -95,6 +95,11 @@ qiniu:
     folder: js
   css:
     folder: css
+prism_plugin:
+  mode: 'prepreocess'
+  theme: 'duotone-light'
+  line_number: false
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

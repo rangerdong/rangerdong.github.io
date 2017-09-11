@@ -4,9 +4,9 @@
 
 # Head info
 head:
-    favicon: "/img/avatar-v.png"
-    high_res_favicon: "/img/avatar-v.png"
-    apple_touch_icon: "/img/avatar-v.png"
+    favicon: "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
+    high_res_favicon: "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
+    apple_touch_icon: "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
     keywords: php 互联网 电影 程序员
     site_verification:
         google:
@@ -70,8 +70,8 @@ background:
 
 # Images Settings
 img:
-    logo: "/img/avatar-v.png"
-    avatar: "/img/avatar-v.png"
+    logo: "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
+    avatar: "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
     daily_pic: "/img/daily_pic.png"
     sidebar_header: "/img/sidebar_header.png"
     random_thumbnail: "/img/random/material-"
@@ -164,7 +164,7 @@ sns:
     weibo:
     instagram:
     tumblr:
-    github:
+    github: "https://github.com/rangerdong"
     linkedin:
     zhihu:
     bilibili:
@@ -196,7 +196,7 @@ sidebar:
         icon: inbox
         divider: false
     categories:
-        use: false
+        use: true
         icon: chrome_reader_mode
         divider: false
     pages:
@@ -209,7 +209,7 @@ sidebar:
         divider: false
     footer:
         divider: true
-        theme: true
+        theme: false
         support: false
         feedback: false
         material: false
@@ -242,8 +242,10 @@ comment:
 # Available value:
 #     swiftype | google | local
 search:
-    use: google
+    use: local
     swiftype_key:
+    path: search.xml
+    field: all
 
 # Analytics Systems
 # Available value:
