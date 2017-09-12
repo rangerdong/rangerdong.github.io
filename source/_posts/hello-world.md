@@ -1,38 +1,15 @@
 ---
-title: Hello World
+title: 从今天起记录自己
+date: 2017-09-10 19:29:17
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+入门互联网接近一年了
+ 慢慢的发现了没有总结没有记录的弊端
+好多重复出现的错误或者搜索的大部分东西都是有点相似的
+因此，从现在开始养成记录的习惯，争取做到原创，并把自己开发当中发现并解决的问题心得写入此博客中
+从好久就开始有这样的想法，一直懒没有实施
+逃离安逸懒惰，养成好习惯
 
-## Quick Start
+本人是一个phper，拥抱变化，拥抱新技术
 
-### Create a new post
+> 敢想不敢为者，终困生牢笼
 
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
-```
-
-More info: [Server](https://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/deployment.html)
