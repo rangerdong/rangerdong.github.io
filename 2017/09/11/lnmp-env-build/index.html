@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.0 -->
+    <script>
+        window.materialVersion = "1.5.0"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Title -->
+    
+    <title>
+        
+            lnmp开发环境搭建 + mysql主从配置 | 
+        
+        Ranger
+    </title>
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Ranger Dong">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="php 互联网 电影 程序员,php,服务器,node,mysql">
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(window.oldVersion){var remove=window.oldVersion.reduce(function(p,c){return p||data.indexOf("/*"+c+"*/")!==-1},false);if(remove){lsloader.removeLS(key)}}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload,isJs){if(typeof cssonload==="boolean"){isJs=cssonload;cssonload=undefined}isJs=isJs||false;cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload,isJs);return}code=code.split(versionString)[1];if(isJs){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload,isJs)}};lsloader.requestResource=function(name,path,cssonload,isJs){var that=this;if(isJs){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else{this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="http://ow2cpubxz.bkt.clouddn.com/images/avatar.png">
+    <link rel="icon" sizes="192x192" href="http://ow2cpubxz.bkt.clouddn.com/images/avatar.png">
+    <link rel="apple-touch-icon" href="http://ow2cpubxz.bkt.clouddn.com/images/avatar.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Ranger">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icon -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?ezyEvm8ST5CGfpA+kFFi1g==", true)</script>
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://blog.rangerdong.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="lnmp开发环境搭建 + mysql主从配置 | Ranger">
+    <meta property="og:image" content="http://blog.rangerdong.comhttp://ow2cpubxz.bkt.clouddn.com/images/avatar.png" />
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="php"> <meta property="og:article:tag" content="服务器"> <meta property="og:article:tag" content="node"> <meta property="og:article:tag" content="mysql"> 
+
+    
+        <meta property="article:published_time" content="Mon Sep 11 2017 00:29:17 GMT+0800" />
+        <meta property="article:modified_time" content="Tue Sep 12 2017 14:04:00 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="lnmp开发环境搭建 + mysql主从配置 | Ranger">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="http://blog.rangerdong.comhttp://ow2cpubxz.bkt.clouddn.com/images/avatar.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="http://blog.rangerdong.com" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html",
+    "headline": "lnmp开发环境搭建 + mysql主从配置",
+    "datePublished": "Mon Sep 11 2017 00:29:17 GMT+0800",
+    "dateModified": "Tue Sep 12 2017 14:04:00 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Ranger Dong",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
+        },
+        "description": "敢想不敢为者，终困生牢笼"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ranger",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "http://ow2cpubxz.bkt.clouddn.com/images/avatar.png"
+        }
+    },
+    "keywords": ",php,服务器,node,mysqlphp 互联网 电影 程序员",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#lnmp-环境部署"><span class="post-toc-number">1.</span> <span class="post-toc-text">lnmp 环境部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-mysql"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装 mysql</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#通过yum源安装mysql"><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">通过yum源安装mysql</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装php7-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">安装php7.1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装nginx"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装nginx</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装nodejs-npm"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">安装nodejs npm</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装git"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">安装git</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#mysql-主从配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">mysql 主从配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置主库和从库"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">配置主库和从库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主库配置"><span class="post-toc-number">2.0.1.1.</span> <span class="post-toc-text">主库配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#从库配置"><span class="post-toc-number">2.0.1.2.</span> <span class="post-toc-text">从库配置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#启动复制"><span class="post-toc-number">2.0.1.3.</span> <span class="post-toc-text">启动复制</span></a></li></ol></li></ol></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                lnmp开发环境搭建 + mysql主从配置
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="http://ow2cpubxz.bkt.clouddn.com/images/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Ranger Dong</strong>
+        <span>9月 11, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/mysql/">mysql</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/node/">node</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/php/">php</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/服务器/">服务器</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=lnmp开发环境搭建 + mysql主从配置&url=http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html&pic=http://blog.rangerdong.comhttp://ow2cpubxz.bkt.clouddn.com/images/avatar.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=lnmp开发环境搭建 + mysql主从配置&url=http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html&via=Ranger Dong" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://blog.rangerdong.com/2017/09/11/lnmp-env-build/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>现在的开发倾向于往虚拟机上进行开发，为了省去每次搭建环境在网上查找的多余时间，很久就想进行一次梳理并且把一些东西记录下来，方便下次搭建环境少走一些弯路。正好这次想搭一下主从同步，因此在virtualbox 上搭建了两个环境，均是 mysql 5.7.19 + php7.1.8 + node6.10.10 + nginx1.10.2 + centos6.9</p>
+<h1 id="lnmp-环境部署"><a href="#lnmp-环境部署" class="headerlink" title="lnmp 环境部署"></a>lnmp 环境部署</h1><h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><p>我是下载mysql的yum源的rpm包进行安装<br>去 <a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="external">官网yum列表</a> 中，找到你对应的版本源包地址    如图：<br><img title="yum源" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_yum.png"></p>
+<p>点击 Download<br><img title="yum下载" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_download.png"></p>
+<img title="yumlink" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_yum_link.png">
+<p>复制其中的下载链接, 进入centos 终端</p>
+<pre><code>
+  $ cd /tag
+
+  $ wget https//dev.mysql.com/get/mysql57-community-release-el6-11.noarch.rpm
+
+  $ rpm -Uvh mysql57-community-release-el6-11.noarch.rpm
+</code></pre><p>通过命令 <code>ls /etc/yum.repos.d</code> 查看源是否加载成功</p>
+<img title="mysql_linux_yum" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_linux_yum.png">
+<h4 id="通过yum源安装mysql"><a href="#通过yum源安装mysql" class="headerlink" title="通过yum源安装mysql"></a>通过yum源安装mysql</h4><pre><code>$ yum install mysql-community-server
+
+$ service mysqld start  # 启动服务
+
+$ grep &#39;temporary password&#39; /var/log/mysqld.log #查看初始密码
+
+# 去修改初始密码
+
+$ mysql -u root -p
+# 输入初始密码
+
+mysql&gt; alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;YourNewPwd&#39;;
+</code></pre><p>mysql 安装完毕</p>
+<h2 id="安装php7-1"><a href="#安装php7-1" class="headerlink" title="安装php7.1"></a>安装php7.1</h2><p>同样是使用yum源安装</p>
+<p>首先 将以下两个源 引入</p>
+<pre><code>$ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+$ rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
+</code></pre><p>加载完毕后可以通过yum search php71 查看相应的安装包</p>
+<p>以下根据情况选择安装</p>
+<pre><code># 基础
+$ yum install php71w -y
+
+$ yum install php71w-devel -y  # 此处要安装devel 包 不然找不到php命令
+# nginx连接使用
+$ yum install php71w-fpm -y
+# 宽字节
+$ yum install php71w-mbstring -y
+# mysql相关
+$ yum install php71w-mysqlnd -y
+# redis扩展
+$ yum install php71w-pecl-redis -y
+# 加密使用
+$ yum install php71w-mcrypt -y
+# 性能加速 php5.5 以上使用
+$ yum install php71w-opcache -y
+</code></pre><h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>用yum 默认安装就可以</p>
+<pre><code>$ yum install nginx -y
+$ service nginx start
+</code></pre><h2 id="安装nodejs-npm"><a href="#安装nodejs-npm" class="headerlink" title="安装nodejs npm"></a>安装nodejs npm</h2><p>由于项目中会用到nodejs，同时现在的现代前端开发都通过npm进行包管理，因此也记下nodejs的搭建</p>
+<p>在 <a href="https://nodejs.org/dist/" target="_blank" rel="external">node版本列表中</a> 找到你需要的版本<br>此处我安装的是<code>v6.11.1</code>的版本</p>
+<img title="node列表" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/node_list.png">
+<p>点击进入后， 会有各个平台的下载包<br><img title="node下载列表" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/node_down.png"></p>
+<p>比较懒的朋友可以直接下载已编译好的包，省去自己编译的麻烦了，我就是比较懒的 😁</p>
+<p>复制下载链接， 进入终端</p>
+<pre><code>$ cd /tmp
+
+$ wget https://nodejs.org/dist/v6.11.1/node-v6.11.1-linux-x64.tar.gz
+
+$ tar -zxvf node-v6.11.1-linux-x64.tar.gz
+</code></pre><p>因为已经编译好了，只需要把解压后文件中的bin内的命令文件软连接到系统的命令就可以了</p>
+<pre><code>$ ln -s /tmp/node-v6.11.1-linux-x64/bin/node /usr/local/bin/node
+
+$ ln -s /tmp/node-v6.11.1-linux-x64/bin/npm /usr/local/bin/npm
+</code></pre><p>通过node -v和npm -v查看是否正常</p>
+<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><p>朋友们应该知道，centos yum内置的git 版本只有1.7几 是不能正常使用的，需要升级到新版的git</p>
+<p>其间安装git也遇到个小坑，也记一下，万一有朋友遇到跟我一样的问题呢，或者下次我再安装的时候出现问题呢</p>
+<p>我们下载git的源码包编译安装</p>
+<p>戳 <a href="https://www.kernel.org/pub/software/scm/git/" target="_blank" rel="external">git下载列表</a> 去下载你想要的版本， 这里我下载的2.14.0的<br>同样复制下载链接，进入终端下载</p>
+<pre><code>$ cd /tmp
+
+$ wget https://www.kernel.org/pub/software/scm/git/git-2.14.0.tar.gz
+
+$ tar -zxvf git-2.14.0.tar.gz
+
+$ cd git-2.14.0
+</code></pre><blockquote>
+<p>此处有坑：在编译安装之前，需要安装 <code>libcurl4-openssl-dev</code> 依赖，不然到时候git clone会出现<code>fatal: Unable to find remote helper for &#39;https&#39;</code>错误，我的服务器是没安装这个包的，因此安装完后又跑回来重新编译了一下</p>
+</blockquote>
+<pre><code>$ yum install libcurl4-openssl-dev -y
+
+# 安装完成后进入解压目录
+
+$ pwd
+/tmp/git-2.14.0
+
+$ ./configure --prefix=/usr/local/git
+
+$ make &amp;&amp; make install
+</code></pre><p>执行完毕之后 <code>ln -s /usr/local/git/bin/git /usr/local/bin/git</code><br>通过命令 <code>git -version</code> 查看是否安装成功</p>
+<h1 id="mysql-主从配置"><a href="#mysql-主从配置" class="headerlink" title="mysql 主从配置"></a>mysql 主从配置</h1><p>在配置之前，先了解下mysql是如何进行主从配置的。 一般来说复制有三个步骤：</p>
+<ol>
+<li>在主库上把数据更改记录到二进制日志(Binary Log)中，即而进行日志事件</li>
+<li>备库将主库上的日志复制到自己的中继日志(Relay Log)中</li>
+<li>备库读取中继日志的事件，将其重放到备库数据上</li>
+</ol>
+<p>可参考下图:<br><img title="主从配置" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_repl.png"></p>
+<p>主从配置的前提是要两个数据库版本相同</p>
+<p>首先在主库中，分配从库用户</p>
+<pre><code>mysql&gt; GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO backup@&#39;192.168.0.*&#39; IDENTIFIED BY &#39;backuppwd&#39;;
+</code></pre><p>此处只是进行了简单的配置，该账号并不能进行select或修改数据</p>
+<h3 id="配置主库和从库"><a href="#配置主库和从库" class="headerlink" title="配置主库和从库"></a>配置主库和从库</h3><h4 id="主库配置"><a href="#主库配置" class="headerlink" title="主库配置"></a>主库配置</h4><p>接下来是要在主库上开启一些设置，配置其打开二进制文件并指定一个独一无二的服务器id(server ID)，在主库的<code>my.cnf</code>文件中，增加或修改：</p>
+<pre><code>log_bin = mysql-bin
+server_id = 1  # 通常设为1 但是不定
+</code></pre><p>如果之前没有设置<code>log_bin</code>选项，则需要重启mysql 服务<br>为确保二进制日志文件是否创建，输入<code>SHOW MASTER STATUS</code>命令查看<br>正常情况下会出现 列名<code>File</code>值为<code>mysql-bin.000001</code>的条目</p>
+<h4 id="从库配置"><a href="#从库配置" class="headerlink" title="从库配置"></a>从库配置</h4><p>在从库中也需要增加类似配置,并重启mysql服务</p>
+<pre><code># my.cnf
+
+log_bin            = mysql-bin
+server_id          = 2
+relay_log          = /var/lib/mysql/mysql-relay-bin
+log_slave_updates  = 1
+read_only          = 1
+</code></pre><pre><code>不要在my.cnf中设置master_port或者master_host这类选项，已被废弃，只会导致坏处不会有好处
+</code></pre><h4 id="启动复制"><a href="#启动复制" class="headerlink" title="启动复制"></a>启动复制</h4><p>通过<code>CHANGE MASTER TO</code>语句连接主库启动复制</p>
+<pre><code>mysql&gt; CHANGE MASTER TO MASTER_HOST=&#39;server1_host&#39;,
+   - &gt; MASTER_USER=&#39;backup&#39;,
+   - &gt; MASTER_PASSWORD=&#39;backuppwd&#39;,
+   - &gt; MASTER_LOG_FILE=&#39;mysql_bin.000001&#39;,
+   - &gt; MASTER_LOG_POS=0;
+</code></pre><p><code>MASTER_LOG_POS</code>设置为0，因为要从日志的开头读起，执行完上述语句后，通过<code>SHOW SLAVE STATUS\G;</code>命令查看是否正确执行<br><img title="mysql_slave" src="http://ow2cpubxz.bkt.clouddn.com/images/lnmp/mysql_slave.png"></p>
+<p>其中标红的正常应该是4和4，因为我这里的截图是配置完执行过复制后的状态，而且其中的<code>mysql-bin</code>文件的后缀应该是000001</p>
+<p>运行 <code>START SLAVE;</code> 进行复制<br>该命令如果没有错误，再执行<code>SHOW SLAVE STATUS\G;</code> 应该就能看到两个数值增加并一致了</p>
+<p>现在在主库中随意建一个表 会发现 在slave这个数据库中 也出现了，至此 最基本的主备复制模式 搭建完成 ，后续再了解下另外几种模式的搭建与各自的区别。有：主-主(双主复制)、主-主(主动-被动)、环形复制等</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/09/12/hello-world/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="http://ow2cpubxz.bkt.clouddn.com/images/avatar.png" alt="Ranger Dong's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        deandongv587@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/服务器/">服务器<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/rangerdong" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+    
+    <!-- V2EX -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Ranger
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
